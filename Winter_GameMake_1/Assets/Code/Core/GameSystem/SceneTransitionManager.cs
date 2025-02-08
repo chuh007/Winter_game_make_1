@@ -16,7 +16,6 @@ namespace Code.Core.GameSystem
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             Debug.Assert(player != null, "player does not exist in this scene");
-            
             playerFinder.SetEntity(player.GetComponent<Entity>());
         }
 

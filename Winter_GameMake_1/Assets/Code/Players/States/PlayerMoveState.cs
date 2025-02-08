@@ -16,7 +16,6 @@ namespace Code.Players.States
         {
             base.Enter();
             _stateTimer = Time.time;
-            _player.PlayerInput.OnSlideKeyPressed += HandleSlideKey;
         }
 
         public override void Update()
@@ -34,7 +33,6 @@ namespace Code.Players.States
 
         public override void Exit()
         {
-            _player.PlayerInput.OnSlideKeyPressed -= HandleSlideKey;
             base.Exit();
         }
 

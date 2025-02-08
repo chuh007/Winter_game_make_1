@@ -10,7 +10,6 @@ namespace Code.Players
         public event Action OnJumpKeyPressed;
         public event Action OnAttackKeyPressed;
         public event Action OnDashKeyPressed;
-        public event Action OnSlideKeyPressed;
         public event Action OnCounterKeyPressed;
         public event Action<bool> OnSkillKeyPressed;
         
@@ -38,7 +37,6 @@ namespace Code.Players
             OnJumpKeyPressed = null;
             OnAttackKeyPressed = null;
             OnDashKeyPressed = null;
-            OnSlideKeyPressed = null;
             OnCounterKeyPressed = null;
         }
 
@@ -64,12 +62,6 @@ namespace Code.Players
         {
             if(context.performed)
                 OnDashKeyPressed?.Invoke();
-        }
-
-        public void OnSlide(InputAction.CallbackContext context)
-        {
-            if(context.performed)
-                OnSlideKeyPressed?.Invoke();
         }
 
         public void OnCounter(InputAction.CallbackContext context)
