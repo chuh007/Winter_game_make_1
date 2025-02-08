@@ -65,7 +65,9 @@ namespace Code.Players.States
 
         protected virtual void HandleAttackKeyPress()
         {
-            if(_mover.IsGroundDetected())
+            if (_player.GetCompo<PlayerTargetFinderCompo>().FindProximateTargetsInCicle())
+                _player.ChangeState("ONSET");
+            else if(_mover.IsGroundDetected())
                 _player.ChangeState("ATTACK");
         }
 
