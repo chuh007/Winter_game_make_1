@@ -1,7 +1,9 @@
 ﻿using Code.Animators;
+using Code.Core.EventSystems;
 using Code.Entities;
 using Code.Entities.FSM;
 using Code.SkillSystem;
+using UnityEngine;
 
 namespace Code.Players.States
 {
@@ -65,8 +67,14 @@ namespace Code.Players.States
 
         protected virtual void HandleAttackKeyPress()
         {
-            if (_player.GetCompo<PlayerTargetFinderCompo>().FindProximateTargetsInCicle())
+            Collider2D col = _player.GetCompo<PlayerTargetFinderCompo>().FindProximateTargetsInCicle();
+            if (col != null)
+            {
+                OnsetTargetEvent onSetEvt = PlayerEvents.OnSetTargetEvent;
+                onSetEvt.target = col.transform;
+                _player.PlayerChannel.RaiseEvent(onSetEvt);
                 _player.ChangeState("ONSET");
+            }
             else if(_mover.IsGroundDetected())
                 _player.ChangeState("ATTACK");
         }

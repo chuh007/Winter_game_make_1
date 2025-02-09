@@ -1,7 +1,9 @@
 using Code.Animators;
+using Code.Core.EventSystems;
 using Code.Entities;
 using Code.Entities.FSM;
 using DG.Tweening;
+using System;
 using UnityEngine;
 
 namespace Code.Players.States
@@ -14,15 +16,18 @@ namespace Code.Players.States
         {
             _player = entity as Player;
             _mover = entity.GetCompo<EntityMover>();
+            _player.PlayerChannel.AddListener<OnsetTargetEvent>(HandleOnSet);
         }
 
         public override void Enter()
         {
             base.Enter();
             _mover.StopImmediately(false);
-            // 엄청난 가비지 코드임. 수정해야함.
-            Transform targetTrm = _player.GetCompo<PlayerTargetFinderCompo>().FindProximateTargetsInCicle().transform;
-            _player.transform.DOMove(targetTrm.position, 0.2f).OnComplete(() => _player.ChangeState("IDLE"));
+        }
+
+        private void HandleOnSet(OnsetTargetEvent evt)
+        {
+            _player.transform.DOMove(evt.target.position, 0.5f).OnComplete(() => _player.ChangeState("IDLE"));
         }
 
         public override void Exit()
