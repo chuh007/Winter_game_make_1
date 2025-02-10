@@ -3,6 +3,7 @@ using Code.Core.EventSystems;
 using Code.Entities;
 using Code.Entities.FSM;
 using Code.SkillSystem;
+using Unity.Behavior;
 using UnityEngine;
 
 namespace Code.Players.States
@@ -70,6 +71,7 @@ namespace Code.Players.States
             Collider2D col = _player.GetCompo<PlayerTargetFinderCompo>().FindProximateTargetsInCicle();
             if (col != null)
             {
+                Debug.Log(col.GetComponent<BehaviorGraphAgent>());
                 OnsetTargetEvent onSetEvt = PlayerEvents.OnSetTargetEvent;
                 onSetEvt.target = col.transform;
                 _player.PlayerChannel.RaiseEvent(onSetEvt);

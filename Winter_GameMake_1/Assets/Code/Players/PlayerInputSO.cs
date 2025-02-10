@@ -42,7 +42,6 @@ namespace Code.Players
 
         public void OnMove(InputAction.CallbackContext context)
         {
-            Debug.Log("A");
             InputDirection = context.ReadValue<Vector2>();
         }
 
