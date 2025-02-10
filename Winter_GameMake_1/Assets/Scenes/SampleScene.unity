@@ -344,7 +344,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 290357550111714334, guid: 7aa00b6cf66f4f141ba81a19ca04df85, type: 3}
       propertyPath: range
-      value: 5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 290357550111714334, guid: 7aa00b6cf66f4f141ba81a19ca04df85, type: 3}
       propertyPath: layer.m_Bits

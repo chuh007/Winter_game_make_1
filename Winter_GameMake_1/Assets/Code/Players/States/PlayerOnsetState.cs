@@ -22,12 +22,12 @@ namespace Code.Players.States
         public override void Enter()
         {
             base.Enter();
-            _mover.StopImmediately(false);
         }
 
         private void HandleOnSet(OnsetTargetEvent evt)
         {
-            _player.transform.DOMove(evt.target.position, 0.5f).OnComplete(() => _player.ChangeState("IDLE"));
+            _renderer.FlipController(evt.target.transform.position.x - _player.transform.position.x);
+            _player.transform.DOMove(evt.target.position, 0.25f).OnComplete(() => _player.ChangeState("IDLE"));// юс╫ц
         }
 
         public override void Exit()
