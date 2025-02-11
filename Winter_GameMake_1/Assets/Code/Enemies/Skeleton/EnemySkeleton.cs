@@ -18,7 +18,9 @@ namespace Code.Enemies.Skeleton
         private EntityAnimationTrigger _animationTrigger;
         private EnemyAttackCompo _attackCompo;
         private EntityHealth _healthCompo;
-        
+
+        public bool isPlayerFound = false;
+
         #region Initialize section
         
         protected override void AfterInitialize()

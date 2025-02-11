@@ -12,10 +12,12 @@ namespace Code.Players.States
     {
         private Player _player;
         private EntityMover _mover;
+        private PlayerAttackCompo _attackCompo;
         public PlayerOnsetState(Entity entity, AnimParamSO animParam) : base(entity, animParam)
         {
             _player = entity as Player;
             _mover = entity.GetCompo<EntityMover>();
+            _attackCompo = entity.GetCompo<PlayerAttackCompo>();
             _player.PlayerChannel.AddListener<OnsetTargetEvent>(HandleOnSet);
         }
 
@@ -27,7 +29,11 @@ namespace Code.Players.States
         private void HandleOnSet(OnsetTargetEvent evt)
         {
             _renderer.FlipController(evt.target.transform.position.x - _player.transform.position.x);
-            _player.transform.DOMove(evt.target.position, 0.25f).OnComplete(() => _player.ChangeState("IDLE"));// 임시
+            _player.transform.DOMove(evt.target.position, 0.25f).OnComplete(() =>
+            {
+                _attackCompo.OnsetAttack();
+                _player.ChangeState("IDLE");// 임시
+            });
         }
 
         public override void Exit()

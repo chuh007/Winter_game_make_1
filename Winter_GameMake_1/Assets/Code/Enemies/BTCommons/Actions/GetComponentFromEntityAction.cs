@@ -1,4 +1,5 @@
 using System;
+using Code.Enemies.Skeleton;
 using Code.Entities;
 using Unity.Behavior;
 using Unity.Properties;
@@ -21,6 +22,7 @@ namespace Code.Enemies.BTCommons.Actions
             SetVariableToBT(enemy, "MainAnimator", enemy.GetCompo<EntityRenderer>().GetComponent<Animator>());
             SetVariableToBT(enemy, "Mover", enemy.GetCompo<EntityMover>());
             SetVariableToBT(enemy, "AnimationTrigger", enemy.GetCompo<EntityAnimationTrigger>());
+            SetVariableToBT(enemy, "SelfCompo", enemy.GetComponent<EnemySkeleton>());
             
             return Status.Success;
         }

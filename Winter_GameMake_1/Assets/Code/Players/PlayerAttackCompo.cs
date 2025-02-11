@@ -108,6 +108,15 @@ namespace Code.Players
             }
         }
 
+        public void OnsetAttack()
+        {
+            bool success = damageCaster.CastDamage(999f, new Vector2(5f, 3f), true); // 임시
+            if (success)
+            {
+                Debug.Log("암살");
+            }
+        }
+
         public ICounterable GetCounterableTargetInRadius()
         {
             Vector3 center = damageCaster.transform.position;
