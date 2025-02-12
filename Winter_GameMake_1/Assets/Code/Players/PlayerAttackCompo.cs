@@ -33,6 +33,8 @@ namespace Code.Players
         private Dictionary<string, AttackDataSO> _attackDataDictionary;
         private AttackDataSO _currentAttackData;
 
+        [SerializeField] private ParticleSystem particle;
+
         #region Init section
 
         public void Initialize(Entity entity)
@@ -114,6 +116,7 @@ namespace Code.Players
             if (success)
             {
                 Debug.Log("암살");
+                particle.Play();
             }
         }
 

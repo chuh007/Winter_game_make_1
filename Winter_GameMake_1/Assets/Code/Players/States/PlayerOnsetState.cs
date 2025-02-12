@@ -13,6 +13,7 @@ namespace Code.Players.States
         private Player _player;
         private EntityMover _mover;
         private PlayerAttackCompo _attackCompo;
+
         public PlayerOnsetState(Entity entity, AnimParamSO animParam) : base(entity, animParam)
         {
             _player = entity as Player;

@@ -1,4 +1,5 @@
 ﻿using Code.Combats;
+using Code.Combats.Onset;
 using Code.Core.EventSystems;
 using Code.Enemies.BTCommons;
 using Code.Entities;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 namespace Code.Enemies.Skeleton
 {
-    public class EnemySkeleton : BTEnemy, ICounterable
+    public class EnemySkeleton : BTEnemy, ICounterable, IOnsetable
     {
         private StateChangeEvent _stateChannel;
         private BlackboardVariable<BTEnemyState> _state;
@@ -95,6 +96,9 @@ namespace Code.Enemies.Skeleton
 
         public bool CanCounter { get; private set; }
         public Transform TargetTrm => transform;
+
+        public bool IsFindPlayer => isPlayerFound;
+
         public void ApplyCounter(float damage, Vector2 direction, Vector2 knockBackForce, bool isPowerAttack, Entity dealer)
         {
             //damage에 스턴시간, 크리티컬 등등의 정보객체 넘어와야 하는데 지금은 damage만 주니까 하드코딩

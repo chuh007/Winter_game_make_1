@@ -1,8 +1,10 @@
 ﻿using Code.Animators;
+using Code.Combats.Onset;
 using Code.Core.EventSystems;
 using Code.Entities;
 using Code.Entities.FSM;
 using Code.SkillSystem;
+using System;
 using Unity.Behavior;
 using UnityEngine;
 
@@ -26,6 +28,7 @@ namespace Code.Players.States
             _player.PlayerInput.OnAttackKeyPressed += HandleAttackKeyPress;
             _player.PlayerInput.OnCounterKeyPressed += HandleCounterKeyPress;
             _player.PlayerInput.OnSkillKeyPressed += HandleSkillKeyPress;
+            _player.PlayerInput.OnOnsetKeyPressed += HandleOnsetKeyPress;
         }
 
         public override void Update()
@@ -43,6 +46,8 @@ namespace Code.Players.States
             _player.PlayerInput.OnAttackKeyPressed -= HandleAttackKeyPress;
             _player.PlayerInput.OnCounterKeyPressed -= HandleCounterKeyPress;
             _player.PlayerInput.OnSkillKeyPressed -= HandleSkillKeyPress;
+            _player.PlayerInput.OnOnsetKeyPressed -= HandleOnsetKeyPress;
+
             base.Exit();
         }
 
@@ -68,16 +73,7 @@ namespace Code.Players.States
 
         protected virtual void HandleAttackKeyPress()
         {
-            Collider2D col = _player.GetCompo<PlayerTargetFinderCompo>().FindProximateTargetsInCicle();
-            if (col != null)
-            {
-                Debug.Log(col.GetComponent<BehaviorGraphAgent>());
-                OnsetTargetEvent onSetEvt = PlayerEvents.OnSetTargetEvent;
-                onSetEvt.target = col.transform;
-                _player.PlayerChannel.RaiseEvent(onSetEvt);
-                _player.ChangeState("ONSET");
-            }
-            else if(_mover.IsGroundDetected())
+            if(_mover.IsGroundDetected())
                 _player.ChangeState("ATTACK");
         }
 
@@ -85,6 +81,18 @@ namespace Code.Players.States
         {
             if(_mover.IsGroundDetected())
                 _player.ChangeState("JUMP");
+        }
+
+        private void HandleOnsetKeyPress()
+        {
+            Collider2D col = _player.GetCompo<PlayerTargetFinderCompo>().FindProximateTargetsInCicle();
+            if (col != null && col.transform.GetComponent<IOnsetable>().IsFindPlayer == false)
+            {
+                OnsetTargetEvent onSetEvt = PlayerEvents.OnSetTargetEvent;
+                onSetEvt.target = col.transform;
+                _player.PlayerChannel.RaiseEvent(onSetEvt);
+                _player.ChangeState("ONSET");
+            }
         }
     }
 }
