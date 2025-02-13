@@ -1,6 +1,7 @@
 ﻿using Code.Animators;
 using Code.Entities;
 using Code.Entities.FSM;
+using System;
 using UnityEngine;
 
 namespace Code.Players.States
@@ -25,6 +26,7 @@ namespace Code.Players.States
             _mover.StopImmediately(true);
             _mover.SetLimitYSpeed(WALL_SLIDE_LIMIT_SPEED);
             _mover.SetGravityScale(WALL_SLIDE_GRAVITY_SCALE);
+            _player.PlayerInput.OnJumpKeyPressed += HandleJumpKeyPress;
         }
 
         public override void Update()
@@ -48,8 +50,14 @@ namespace Code.Players.States
         public override void Exit()
         {
             _mover.SetGravityScale(1f);
+            _player.PlayerInput.OnJumpKeyPressed -= HandleJumpKeyPress;
             _mover.SetLimitYSpeed(NORMAL_LIMIT_SPEED);
             base.Exit();
+        }
+
+        private void HandleJumpKeyPress()
+        {
+            _player.ChangeState("JUMP");
         }
     }
 }
