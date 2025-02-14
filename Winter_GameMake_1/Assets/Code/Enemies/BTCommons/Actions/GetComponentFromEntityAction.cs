@@ -22,7 +22,7 @@ namespace Code.Enemies.BTCommons.Actions
             SetVariableToBT(enemy, "MainAnimator", enemy.GetCompo<EntityRenderer>().GetComponent<Animator>());
             SetVariableToBT(enemy, "Mover", enemy.GetCompo<EntityMover>());
             SetVariableToBT(enemy, "AnimationTrigger", enemy.GetCompo<EntityAnimationTrigger>());
-            SetVariableToBT(enemy, "SelfCompo", enemy.GetComponent<EnemySkeleton>());
+            SetVariableToBT(enemy, "SelfCompo", enemy.GetComponent<BTEnemy>());
             
             return Status.Success;
         }

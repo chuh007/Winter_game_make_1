@@ -86,7 +86,7 @@ namespace Code.Players
         public void OnOnset(InputAction.CallbackContext context)
         {
             if (context.performed)
-                OnOnsetKeyPressed.Invoke();
+                OnOnsetKeyPressed?.Invoke();
         }
     }
 }

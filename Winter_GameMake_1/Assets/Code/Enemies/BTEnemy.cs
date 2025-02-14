@@ -9,6 +9,8 @@ namespace Code.Enemies
     {
         [field: SerializeField] public EntityFinderSO PlayerFinder { get; protected set; }
         public LayerMask whatIsPlayer;
+        public bool isPlayerFound = false;
+
         public float FacingDirection => _renderer.FacingDirection;
 
         //임시코드
