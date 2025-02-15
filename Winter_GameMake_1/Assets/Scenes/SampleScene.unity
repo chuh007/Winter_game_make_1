@@ -6455,8 +6455,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.077949435, y: -0.28581452}
-  m_Size: {x: 0.65589887, y: 1.6495781}
+  m_Offset: {x: 0.24319553, y: 0.008980513}
+  m_Size: {x: 1.059988, y: 1.059988}
   m_Direction: 0
 --- !u!114 &1276073363888557208
 MonoBehaviour:
@@ -6474,6 +6474,7 @@ MonoBehaviour:
   m_BlackboardVariableOverridesList:
   - rid: 6219874946239955304
   - rid: 6219874946239955305
+  - rid: 7709722012835119659
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -6495,6 +6496,14 @@ MonoBehaviour:
           m_Value1: 13309815391735571672
         Name: Mover
         m_Value: {fileID: 5164931334300991265}
+    - rid: 7709722012835119659
+      type: {class: 'BlackboardVariable`1[[Bullet, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 8047578834646574991
+          m_Value1: 16876258969729602383
+        Name: Bullet
+        m_Value: {fileID: 8500349146505661780, guid: 81afc7a0cf6a25f46a630d4eb94b617a, type: 3}
 --- !u!114 &1419885926837078633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6675,7 +6684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa609c03615422d94eaae4e9bfe8226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 1.6
+  attackDistance: 5
   detectDistance: 10
   attackCooldown: 1
   cooldownRandomness: 0.2
@@ -6872,7 +6881,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -6883,7 +6892,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 6
 --- !u!1001 &4513303193326938043
 PrefabInstance:
   m_ObjectHideFlags: 0
