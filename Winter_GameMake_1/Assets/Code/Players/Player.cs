@@ -55,11 +55,11 @@ namespace Code.Players
 
         protected override void HandleHit()
         {
-            //피격상태로 전환
         }
 
         protected override void HandleDead()
         {
+            ChangeState("DEAD");
             //죽음상태로 전환해주면 된다.
         }
 

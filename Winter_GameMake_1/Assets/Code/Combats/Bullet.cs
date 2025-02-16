@@ -1,3 +1,4 @@
+using Code.Combats;
 using Code.Entities;
 using Code.Players;
 using System.Collections;
@@ -23,9 +24,9 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out Player player))
+        if (collision.TryGetComponent(out IDamageable damageable))
         {
-            player.GetCompo<EntityHealth>().ApplyDamage(_damage, transform.right, new Vector2(3f, 5f),false, _owner);
+            damageable.ApplyDamage(_damage, transform.right, new Vector2(3f, 5f), false, _owner);
             Destroy(gameObject);
         }
     }
