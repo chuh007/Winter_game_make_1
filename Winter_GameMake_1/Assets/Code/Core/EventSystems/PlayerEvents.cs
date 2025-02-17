@@ -12,6 +12,7 @@ namespace Code.Core.EventSystems
         public static readonly SkillChargedEvent SkillChargedEvent = new SkillChargedEvent();
         public static readonly SkillChargeEndEvent SkillChargeEndEvent = new SkillChargeEndEvent();
         public static readonly OnsetTargetEvent OnSetTargetEvent = new OnsetTargetEvent();
+        
     }
 
     public class AddEXPEvent : GameEvent

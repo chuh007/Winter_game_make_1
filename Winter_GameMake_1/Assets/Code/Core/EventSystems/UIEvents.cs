@@ -4,6 +4,7 @@
     {
         public static FadeEvent FadeEvent = new FadeEvent();
         public static FadeCompleteEvent FadeCompleteEvent = new FadeCompleteEvent();
+        public static readonly HPValueChangeEvent HPValueChangeEvent = new HPValueChangeEvent();
     }
 
     public class FadeEvent : GameEvent
@@ -15,4 +16,10 @@
 
     public class FadeCompleteEvent : GameEvent
     { }
+
+    public class HPValueChangeEvent : GameEvent
+    {
+        public float value;
+        public float maxValue;
+    }
 }

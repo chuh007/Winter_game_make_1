@@ -1,6 +1,8 @@
 ﻿using System;
 using Code.Combats;
+using Code.Core.EventSystems;
 using Code.Core.StatSystem;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 namespace Code.Entities
@@ -8,6 +10,7 @@ namespace Code.Entities
     public class EntityHealth : MonoBehaviour, IEntityComponent, IAfterInit
     {
         [SerializeField] private StatSO hpStat;
+        [SerializeField] private GameEventChannelSO uiChannel;
         public float maxHealth;
         private float _currentHealth;
         
@@ -47,6 +50,10 @@ namespace Code.Entities
             maxHealth = current;
             _currentHealth = Mathf.Clamp(_currentHealth + current - previous, 1f, maxHealth);
             //체력변경으로 인해 사망하는 일은 없도록
+            HPValueChangeEvent hpValueChangeEvent = UIEvents.HPValueChangeEvent;
+            hpValueChangeEvent.value = _currentHealth;
+            hpValueChangeEvent.maxValue = maxHealth;
+            uiChannel.RaiseEvent(hpValueChangeEvent);
         }
 
         public void ApplyDamage(float damage, Vector2 direction, Vector2 knockBackPower, bool isPowerAttack, Entity dealer)
@@ -57,9 +64,14 @@ namespace Code.Entities
             _feedbackData.LastAttackDirection = direction.normalized;
             _feedbackData.IsLastHitPowerAttack = isPowerAttack;
             _feedbackData.LastEntityWhoHit = dealer;
+            HPValueChangeEvent hpValueChangeEvent = UIEvents.HPValueChangeEvent;
+            hpValueChangeEvent.value = _currentHealth;
+            hpValueChangeEvent.maxValue = maxHealth;
+            uiChannel.RaiseEvent(hpValueChangeEvent);
 
             AfterHitFeedbacks(knockBackPower);
         }
+
 
         private void AfterHitFeedbacks(Vector2 knockBackPower)
         {
