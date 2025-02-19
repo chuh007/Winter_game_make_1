@@ -20,6 +20,8 @@ namespace Code.Players
 
         [SerializeField] private StatSO jumpCountStat, attackSpeedStat;
         [field: SerializeField] public AnimParamSO ComboCounterParam { get; private set; }
+
+        [field: SerializeField] public GameEventChannelSO uiEvt { get; private set; }
         
         private int _maxJumpCount;
         private int _currentJumpCount;

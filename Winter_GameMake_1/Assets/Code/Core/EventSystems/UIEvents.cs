@@ -5,6 +5,7 @@
         public static FadeEvent FadeEvent = new FadeEvent();
         public static FadeCompleteEvent FadeCompleteEvent = new FadeCompleteEvent();
         public static readonly HPValueChangeEvent HPValueChangeEvent = new HPValueChangeEvent();
+        public static readonly OnsetUIEvent OnsetUIEvent = new OnsetUIEvent();
     }
 
     public class FadeEvent : GameEvent
@@ -21,5 +22,10 @@
     {
         public float value;
         public float maxValue;
+    }
+
+    public class OnsetUIEvent : GameEvent
+    {
+
     }
 }

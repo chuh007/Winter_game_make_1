@@ -14,11 +14,13 @@ namespace Code.Players.States
     {
         protected Player _player;
         protected EntityMover _mover;
-        
+        protected GameEventChannelSO uiEvt;
+
         public PlayerGroundState(Entity entity, AnimParamSO animParam) : base(entity, animParam)
         {
             _player = entity as Player;
             _mover = entity.GetCompo<EntityMover>();
+            uiEvt = _player.uiEvt;
         }
 
         public override void Enter()
@@ -90,23 +92,25 @@ namespace Code.Players.States
 
         private void HandleOnsetKeyPress(bool isPressed)
         {
+            OnsetUIEvent onsetEvt = UIEvents.OnsetUIEvent;
             if (isPressed)
             {
                 originalFixedDeltaTime = Time.fixedDeltaTime;
                 Time.timeScale = 0.5f;
                 Time.fixedDeltaTime = originalFixedDeltaTime * Time.timeScale;
+                uiEvt.RaiseEvent(onsetEvt);
             }
-
             else
             {
                 Time.timeScale = originalTimeScale;
                 Time.fixedDeltaTime = originalFixedDeltaTime;
+                uiEvt.RaiseEvent(onsetEvt);
                 Collider2D col = _player.GetCompo<PlayerTargetFinderCompo>().FindProximateTargetsInCicle();
                 if (col != null && col.transform.GetComponent<IOnsetable>().IsFindPlayer == false)
                 {
-                    OnsetTargetEvent onSetEvt = PlayerEvents.OnSetTargetEvent;
-                    onSetEvt.target = col.transform;
-                    _player.PlayerChannel.RaiseEvent(onSetEvt);
+                    OnsetTargetEvent onSetTargetEvt = PlayerEvents.OnSetTargetEvent;
+                    onSetTargetEvt.target = col.transform;
+                    _player.PlayerChannel.RaiseEvent(onSetTargetEvt);
                     _player.ChangeState("ONSET");
                 }
             }

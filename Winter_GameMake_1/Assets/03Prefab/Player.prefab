@@ -206,6 +206,7 @@ MonoBehaviour:
   jumpCountStat: {fileID: 11400000, guid: 18ec2caed1877aa40a004af0a655f1e9, type: 2}
   attackSpeedStat: {fileID: 11400000, guid: 9b11fc7524a624b48b232e6968ff0480, type: 2}
   <ComboCounterParam>k__BackingField: {fileID: 11400000, guid: b2c8fbd5f718ccf40b8225659d9848f7, type: 2}
+  <uiEvt>k__BackingField: {fileID: 11400000, guid: 80b9a311fcc49964b90167b8c5ac93d0, type: 2}
 --- !u!1 &5947107322834171684
 GameObject:
   m_ObjectHideFlags: 0
