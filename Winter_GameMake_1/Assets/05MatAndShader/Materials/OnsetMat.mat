@@ -42,10 +42,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _EdgeSmoothness: 2
+    - _EdgeSmoothness: 0.02
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ViewRadius: 2
+    - _ViewRadius: 0.5
     m_Colors:
     - _Position: {r: 0.5, g: 0.5, b: 0, a: 0}
   m_BuildTextureStacks: []
