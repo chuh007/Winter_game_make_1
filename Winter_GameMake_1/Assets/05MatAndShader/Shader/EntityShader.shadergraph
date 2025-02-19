@@ -2597,8 +2597,8 @@
     "m_ObjectId": "c335074e6d15404c9043bc366625fe85",
     "m_Title": "Noise Effect",
     "m_Position": {
-        "x": -560.0,
-        "y": -582.0
+        "x": -559.9999389648438,
+        "y": -581.5000610351563
     }
 }
 
@@ -3305,8 +3305,8 @@
     "m_ObjectId": "f36e598928194be98347388058a8ba12",
     "m_Title": "Secondary Texture emissive",
     "m_Position": {
-        "x": -751.0,
-        "y": 262.0
+        "x": -750.9999389648438,
+        "y": 262.5
     }
 }
 

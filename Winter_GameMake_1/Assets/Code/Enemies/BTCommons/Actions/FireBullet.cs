@@ -4,6 +4,7 @@ using UnityEngine;
 using Action = Unity.Behavior.Action;
 using Unity.Properties;
 using Code.Entities;
+using Code.Combats;
 
 [Serializable, GeneratePropertyBag]
 [NodeDescription(name: "FireBullet", story: "[onwer] fire [count] [bullet] to [target] speed: [speed] rotate: [rotate] damage: [damage]", category: "Action", id: "d7f1d19e1abc39ba5744048ed728f088")]

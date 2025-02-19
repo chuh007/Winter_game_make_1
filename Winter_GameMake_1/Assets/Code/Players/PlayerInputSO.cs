@@ -11,7 +11,7 @@ namespace Code.Players
         public event Action OnAttackKeyPressed;
         public event Action OnDashKeyPressed;
         public event Action OnCounterKeyPressed;
-        public event Action OnOnsetKeyPressed;
+        public event Action<bool> OnOnsetKeyPressed;
         public event Action<bool> OnSkillKeyPressed;
         
         public Vector2 InputDirection { get; private set; }
@@ -86,7 +86,9 @@ namespace Code.Players
         public void OnOnset(InputAction.CallbackContext context)
         {
             if (context.performed)
-                OnOnsetKeyPressed?.Invoke();
+                OnOnsetKeyPressed?.Invoke(true);
+            if (context.canceled)
+                OnOnsetKeyPressed?.Invoke(false);
         }
     }
 }

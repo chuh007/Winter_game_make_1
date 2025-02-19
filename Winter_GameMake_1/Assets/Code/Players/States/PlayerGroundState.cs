@@ -31,6 +31,7 @@ namespace Code.Players.States
             _player.PlayerInput.OnOnsetKeyPressed += HandleOnsetKeyPress;
         }
 
+
         public override void Update()
         {
             base.Update();
@@ -83,15 +84,31 @@ namespace Code.Players.States
                 _player.ChangeState("JUMP");
         }
 
-        private void HandleOnsetKeyPress()
+
+        private float originalFixedDeltaTime = Time.fixedDeltaTime;
+        private float originalTimeScale = Time.timeScale;
+
+        private void HandleOnsetKeyPress(bool isPressed)
         {
-            Collider2D col = _player.GetCompo<PlayerTargetFinderCompo>().FindProximateTargetsInCicle();
-            if (col != null && col.transform.GetComponent<IOnsetable>().IsFindPlayer == false)
+            if (isPressed)
             {
-                OnsetTargetEvent onSetEvt = PlayerEvents.OnSetTargetEvent;
-                onSetEvt.target = col.transform;
-                _player.PlayerChannel.RaiseEvent(onSetEvt);
-                _player.ChangeState("ONSET");
+                originalFixedDeltaTime = Time.fixedDeltaTime;
+                Time.timeScale = 0.5f;
+                Time.fixedDeltaTime = originalFixedDeltaTime * Time.timeScale;
+            }
+
+            else
+            {
+                Time.timeScale = originalTimeScale;
+                Time.fixedDeltaTime = originalFixedDeltaTime;
+                Collider2D col = _player.GetCompo<PlayerTargetFinderCompo>().FindProximateTargetsInCicle();
+                if (col != null && col.transform.GetComponent<IOnsetable>().IsFindPlayer == false)
+                {
+                    OnsetTargetEvent onSetEvt = PlayerEvents.OnSetTargetEvent;
+                    onSetEvt.target = col.transform;
+                    _player.PlayerChannel.RaiseEvent(onSetEvt);
+                    _player.ChangeState("ONSET");
+                }
             }
         }
     }

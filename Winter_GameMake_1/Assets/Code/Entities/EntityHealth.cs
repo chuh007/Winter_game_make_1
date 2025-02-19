@@ -67,7 +67,7 @@ namespace Code.Entities
             HPValueChangeEvent hpValueChangeEvent = UIEvents.HPValueChangeEvent;
             hpValueChangeEvent.value = _currentHealth;
             hpValueChangeEvent.maxValue = maxHealth;
-            uiChannel.RaiseEvent(hpValueChangeEvent);
+            uiChannel?.RaiseEvent(hpValueChangeEvent);
 
             AfterHitFeedbacks(knockBackPower);
         }
