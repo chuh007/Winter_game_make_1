@@ -39,7 +39,6 @@ namespace Code.Combats.Onset
         private void ToggleVignette(OnsetUIEvent evt)
         {
             isVignetteEnabled = !isVignetteEnabled;
-            float targetIntensity = isVignetteEnabled ? 0.6f : 0f;
             vignette.active = isVignetteEnabled;
             //vignette.intensity.Override(isVignetteEnabled ? 0.6f : 0f);
             //DOTween.To(() => vignette.intensity.value, x => vignette.intensity.value = x, targetIntensity, 0.25f)
