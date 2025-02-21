@@ -30,9 +30,9 @@ namespace Code.Players.States
         private void HandleOnSet(OnsetTargetEvent evt)
         {
             _renderer.FlipController(evt.target.transform.position.x - _player.transform.position.x);
-            _player.transform.DOMove(evt.target.position, 0.25f).OnComplete(() =>
+            _player.transform.DOMove(new Vector2(evt.target.position.x+1, evt.target.position.y), 0.25f).OnComplete(() =>
             {
-                _attackCompo.OnsetAttack();
+                _attackCompo.OnsetAttack(evt.target);
                 _player.ChangeState("IDLE");// юс╫ц
             });
         }

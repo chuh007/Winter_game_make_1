@@ -33,7 +33,6 @@ namespace Code.Players
         private Dictionary<string, AttackDataSO> _attackDataDictionary;
         private AttackDataSO _currentAttackData;
 
-        [SerializeField] private ParticleSystem particle;
 
         #region Init section
 
@@ -110,13 +109,12 @@ namespace Code.Players
             }
         }
 
-        public void OnsetAttack()
+        public void OnsetAttack(Transform target)
         {
             bool success = damageCaster.CastDamage(999f, new Vector2(5f, 3f), true); // 임시
             if (success)
             {
                 Debug.Log("암살");
-                particle.Play();
             }
         }
 
