@@ -8,14 +8,19 @@ using Action = Unity.Behavior.Action;
 namespace Code.Enemies.BTCommons.Actions
 {
     [Serializable, GeneratePropertyBag]
-    [NodeDescription(name: "ChaseToTarget", story: "[self] chase to [target] with [mover]", category: "Action", id: "33a0d6f88580af3aabbd6998842d56f6")]
+    [NodeDescription(name: "ChaseToTarget", story: "[self] chase to [target] with [mover] [speedMult]", category: "Action", id: "33a0d6f88580af3aabbd6998842d56f6")]
     public partial class ChaseToTargetAction : Action
     {
-        [SerializeReference] public BlackboardVariable<BTEnemy> Self;
-        [SerializeReference] public BlackboardVariable<Transform> Target;
-        [SerializeReference] public BlackboardVariable<EntityMover> Mover;
+    [SerializeReference] public BlackboardVariable<GameObject> Self;
+    [SerializeReference] public BlackboardVariable<Transform> Target;
+    [SerializeReference] public BlackboardVariable<EntityMover> Mover;
+    [SerializeReference] public BlackboardVariable<float> SpeedMult;
+        protected override Status OnStart()
+        {
+            Mover.Value.SetMoveSpeedMultiplier(SpeedMult.Value);
+            return Status.Running;
+        }
 
-        
         protected override Status OnUpdate()
         {
             float xMove = GetMovementXDirection();
