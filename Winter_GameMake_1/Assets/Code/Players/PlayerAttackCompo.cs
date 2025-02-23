@@ -4,6 +4,7 @@ using Code.Animators;
 using Code.Combats;
 using Code.Core.EventSystems;
 using Code.Core.StatSystem;
+using Code.Enemies;
 using Code.Entities;
 using UnityEngine;
 
@@ -111,11 +112,9 @@ namespace Code.Players
 
         public void OnsetAttack(Transform target)
         {
-            bool success = damageCaster.CastDamage(999f, new Vector2(5f, 3f), true); // 임시
-            if (success)
-            {
-                Debug.Log("암살");
-            }
+            target.GetComponent<BTEnemy>().GetCompo<EntityHealth>().ApplyDamage(9999f, 
+                (target.position - _player.transform.position).normalized, new Vector2(1, 1), false, _player);
+            
         }
 
         public ICounterable GetCounterableTargetInRadius()
