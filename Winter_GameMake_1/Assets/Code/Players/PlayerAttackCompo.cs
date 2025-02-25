@@ -6,6 +6,7 @@ using Code.Core.EventSystems;
 using Code.Core.StatSystem;
 using Code.Enemies;
 using Code.Entities;
+using Code.Feedbacks;
 using UnityEngine;
 
 namespace Code.Players
@@ -34,6 +35,7 @@ namespace Code.Players
         private Dictionary<string, AttackDataSO> _attackDataDictionary;
         private AttackDataSO _currentAttackData;
 
+        public ImpulseFeedback impulse;
 
         #region Init section
 
@@ -112,6 +114,7 @@ namespace Code.Players
 
         public void OnsetAttack(Transform target)
         {
+            impulse.CreateFeedback();
             target.GetComponent<BTEnemy>().GetCompo<EntityHealth>().ApplyDamage(9999f, 
                 (target.position - _player.transform.position).normalized, new Vector2(1, 1), false, _player);
             

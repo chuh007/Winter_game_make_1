@@ -39,6 +39,7 @@ namespace Code.Players.States
                 evt.target.position.y), 0.25f).OnComplete(() =>
             {
                 _attackCompo.OnsetAttack(evt.target);
+                
                 _renderer.transform.rotation = Quaternion.Euler(0, 0, 0);
                 _player.ChangeState("IDLE");
             });
