@@ -77,6 +77,7 @@ namespace Code.Enemies.Fly
         protected override void HandleDead()
         {
             if (IsDead) return;
+            base.HandleDead();
             gameObject.layer = DeadBodyLayer;
             IsDead = true;
             _stateChannel.SendEventMessage(BTEnemyState.DEATH);

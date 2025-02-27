@@ -1,4 +1,5 @@
 ﻿using Code.Core.EventSystems;
+using Code.Core.Pool;
 using Code.Entities;
 using Unity.Behavior;
 using UnityEngine;
@@ -19,6 +20,7 @@ namespace Code.Enemies
         
         protected BehaviorGraphAgent _btAgent;
         protected EntityRenderer _renderer;
+        protected EnemyFOV _fOV;
 
         protected override void AddComponentToDictionary()
         {
@@ -28,6 +30,13 @@ namespace Code.Enemies
             
             _renderer = GetCompo<EntityRenderer>();
             Debug.Assert(_renderer != null, $"{gameObject.name} does not have an EntityRenderer");
+
+            _fOV = GetCompo<EnemyFOV>();
+            Debug.Assert(_fOV != null, $"{gameObject.name} does not have an FOV");
+
+            _fOV.viewAngle = GetBlackboardVariable<float>("Angle");
+            _fOV.viewDistance = GetBlackboardVariable<float>("DetectRange");
+            _fOV.DrawFOV();
         }
 
         protected virtual void Start()
@@ -35,6 +44,11 @@ namespace Code.Enemies
             //do nothing
         }
 
+        protected override void HandleDead()
+        {
+            ParticleManager.Instance.ParticlePlay(PollingType.EnemyDeadParticle, transform.position);
+            _fOV.gameObject.SetActive(false);
+        }
         public BlackboardVariable<T> GetBlackboardVariable<T>(string key)
         {
             if (_btAgent.GetVariable(key, out BlackboardVariable<T> result))

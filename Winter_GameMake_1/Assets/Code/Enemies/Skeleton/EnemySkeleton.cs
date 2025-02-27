@@ -82,6 +82,7 @@ namespace Code.Enemies.Skeleton
         protected override void HandleDead()
         {
             if(IsDead) return;
+            base.HandleDead();
             gameObject.layer = DeadBodyLayer;
             IsDead = true;
             _stateChannel.SendEventMessage(BTEnemyState.DEATH);
