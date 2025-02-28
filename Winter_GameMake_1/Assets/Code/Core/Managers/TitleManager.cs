@@ -4,6 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class TitleManager : MonoBehaviour
 {
+    public void GoMain()
+    {
+        SceneManager.LoadScene("StartScene");
+    }
+
     public void StartGame()
     {
         SceneManager.LoadScene("GameScene");

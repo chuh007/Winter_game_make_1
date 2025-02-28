@@ -58,10 +58,6 @@ namespace Code.Enemies
             Vector2 knockBackForce = new Vector2(1f, 1f);
             bool success = damageCaster.CastDamage(damage, knockBackForce, false);
 
-            if (success)
-            {
-                Debug.Log($"<color=red>Damaged! - {damage}</color>");
-            }
         }
     }
 }

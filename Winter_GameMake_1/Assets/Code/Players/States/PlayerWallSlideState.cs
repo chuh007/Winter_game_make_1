@@ -56,6 +56,8 @@ namespace Code.Players.States
 
         private void HandleJumpKeyPress()
         {
+            _mover.StopImmediately(true);
+            _mover.AddForceToEntity(new Vector2(2f, 5f));
             _player.ChangeState("JUMP");
         }
     }
