@@ -88,7 +88,7 @@ namespace Code.Players.States
 
 
         private float originalFixedDeltaTime = Time.fixedDeltaTime;
-        private float originalTimeScale = Time.timeScale;
+        private float originalTimeScale = 1f;
 
         private void HandleOnsetKeyPress(bool isPressed)
         {
