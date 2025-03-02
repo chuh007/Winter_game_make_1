@@ -34,7 +34,7 @@ namespace Code.Players.States
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             _renderer.transform.rotation = Quaternion.Euler(0, 0, angle);
             Debug.Log(angle);
-            int movePlus = evt.target.position.x - _player.transform.position.x > 0 ? 2 : -2;
+            int movePlus = evt.target.position.x - _player.transform.position.x > 0 ? 1 : -1;
             _player.transform.DOMove(new Vector2(evt.target.localPosition.x + movePlus,
                 evt.target.position.y), 0.25f).OnComplete(() =>
             {
