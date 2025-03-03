@@ -25,8 +25,13 @@ namespace Code.Players
         
         private int _maxJumpCount;
         private int _currentJumpCount;
+        private float _coyoteTime = 0;
+
         public bool CanJump => _currentJumpCount > 0;
-        
+
+        public bool CanCoyoteJump => _coyoteTime < 0.1f;
+
+
         protected override void Awake()
         {
             base.Awake();
@@ -38,7 +43,6 @@ namespace Code.Players
             base.AfterInitialize();
             EntityStat statCompo = GetCompo<EntityStat>();
             statCompo.GetStat(jumpCountStat).OnValueChange += HandleJumpCountChange;
-            // ^-^ 점프카운트 리셋 ^-^
             _currentJumpCount = _maxJumpCount = Mathf.RoundToInt(statCompo.GetStat(jumpCountStat).Value);
 
             PlayerInput.OnDashKeyPressed += HandleDashKeyPress;
@@ -62,7 +66,6 @@ namespace Code.Players
         protected override void HandleDead()
         {
             ChangeState("DEAD");
-            //죽음상태로 전환해주면 된다.
         }
 
         private void HandleAnimationEnd() => _stateMachine.CurrentState.AnimationEndTrigger();
@@ -82,6 +85,10 @@ namespace Code.Players
         
         public void DecreaseJumpCount() => _currentJumpCount--;
         public void ResetJumpCount() => _currentJumpCount = _maxJumpCount;
+
+        public void UpdateCoyoteTime() => _coyoteTime += Time.deltaTime;
+
+        public void ResetCoyoteTime() =>_coyoteTime = 0;
         
         private void Start()
         {

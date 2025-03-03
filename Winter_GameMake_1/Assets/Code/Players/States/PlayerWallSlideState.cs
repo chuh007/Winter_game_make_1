@@ -26,6 +26,7 @@ namespace Code.Players.States
             _mover.StopImmediately(true);
             _mover.SetLimitYSpeed(WALL_SLIDE_LIMIT_SPEED);
             _mover.SetGravityScale(WALL_SLIDE_GRAVITY_SCALE);
+            _player.ResetCoyoteTime();
             _player.PlayerInput.OnJumpKeyPressed += HandleJumpKeyPress;
         }
 
@@ -57,7 +58,6 @@ namespace Code.Players.States
         private void HandleJumpKeyPress()
         {
             _mover.StopImmediately(true);
-            _mover.AddForceToEntity(new Vector2(2f, 5f));
             _player.ChangeState("JUMP");
         }
     }

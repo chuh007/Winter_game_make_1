@@ -5,8 +5,6 @@ using UnityEngine;
 
 namespace Code.Players.States
 {
-    // 이를 해결하기 위해 Jump와 Fall을 아우르는 AirState를 만들고 거기서 XInput을 입력받아서 좌우 움직임을 만들 되,
-// 평소 플레이어 이동속도의 70퍼센트의 속도로 움직이게 해주세요.
     public abstract class PlayerAirState : EntityState
     {
         protected Player _player;
@@ -34,7 +32,7 @@ namespace Code.Players.States
             float xInput = _player.PlayerInput.InputDirection.x;
             if(Mathf.Abs(xInput) > 0)
                 _mover.SetMovementX(xInput);
-
+            _player.UpdateCoyoteTime();
             bool isFrontMove = Mathf.Abs(xInput + _renderer.FacingDirection) > 1;
             if (isFrontMove && _mover.IsWallDetected(_renderer.FacingDirection))
             {
@@ -58,7 +56,7 @@ namespace Code.Players.States
 
         private void HandleAirJump()
         {
-            if(_player.CanJump)
+            if(_player.CanJump || _player.CanCoyoteJump)
                 _player.ChangeState("JUMP");
         }
     }

@@ -26,6 +26,7 @@ namespace Code.Players.States
         public override void Enter()
         {
             base.Enter();
+            _player.ResetCoyoteTime();
             _player.PlayerInput.OnJumpKeyPressed += HandleJumpKeyPress;
             _player.PlayerInput.OnAttackKeyPressed += HandleAttackKeyPress;
             _player.PlayerInput.OnCounterKeyPressed += HandleCounterKeyPress;
