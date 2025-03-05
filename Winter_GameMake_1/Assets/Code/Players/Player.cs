@@ -22,6 +22,8 @@ namespace Code.Players
         [field: SerializeField] public AnimParamSO ComboCounterParam { get; private set; }
 
         [field: SerializeField] public GameEventChannelSO uiEvt { get; private set; }
+
+        [SerializeField] private GameObject gameover;
         
         private int _maxJumpCount;
         private int _currentJumpCount;
@@ -29,7 +31,7 @@ namespace Code.Players
 
         public bool CanJump => _currentJumpCount > 0;
 
-        public bool CanCoyoteJump => _coyoteTime < 0.1f;
+        public bool CanCoyoteJump => _coyoteTime < 0.2f;
 
 
         protected override void Awake()
@@ -66,6 +68,8 @@ namespace Code.Players
         protected override void HandleDead()
         {
             ChangeState("DEAD");
+            gameover.SetActive(true);
+            Time.timeScale = 0;
         }
 
         private void HandleAnimationEnd() => _stateMachine.CurrentState.AnimationEndTrigger();

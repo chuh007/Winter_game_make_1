@@ -25,6 +25,7 @@ namespace Code.Enemies
         protected override void AddComponentToDictionary()
         {
             base.AddComponentToDictionary();
+            EnemyCounter.Instance.EnemyCountValueChange(1);
             _btAgent = GetComponent<BehaviorGraphAgent>();
             Debug.Assert(_btAgent != null, $"{gameObject.name} does not have an BehaviorGraphAgent");
             
@@ -36,6 +37,8 @@ namespace Code.Enemies
 
             _fOV.viewAngle = GetBlackboardVariable<float>("Angle");
             _fOV.viewDistance = GetBlackboardVariable<float>("DetectRange");
+            Debug.Log(_fOV.viewAngle);
+            Debug.Log(_fOV.viewDistance);
             _fOV.DrawFOV();
         }
 
@@ -47,6 +50,7 @@ namespace Code.Enemies
         protected override void HandleDead()
         {
             ParticleManager.Instance.ParticlePlay(PollingType.EnemyDeadParticle, transform.position);
+            EnemyCounter.Instance.EnemyCountValueChange(-1);
             _fOV.gameObject.SetActive(false);
         }
         public BlackboardVariable<T> GetBlackboardVariable<T>(string key)

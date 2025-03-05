@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDistance: 1.6
-  detectDistance: 10
+  detectDistance: 5
   attackCooldown: 1
   cooldownRandomness: 0.2
   damageStat: {fileID: 0}

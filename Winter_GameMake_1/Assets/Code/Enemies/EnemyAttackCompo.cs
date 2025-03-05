@@ -54,7 +54,7 @@ namespace Code.Enemies
 
         private void HandleAttackTrigger()
         {
-            
+
             Vector2 knockBackForce = new Vector2(1f, 1f);
             bool success = damageCaster.CastDamage(damage, knockBackForce, false);
 
