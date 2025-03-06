@@ -126,7 +126,6 @@ MonoBehaviour:
   - rid: 7709722080599343340
   - rid: 7709722146628173902
   - rid: 7709722167810196086
-  - rid: 7709722167810196087
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -172,14 +171,6 @@ MonoBehaviour:
           m_Value1: 9775460593163883849
         Name: AttackCooldown
         m_Value: 1.5
-    - rid: 7709722167810196087
-      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 1857216213959421649
-          m_Value1: 364699723663489780
-        Name: AttackRange
-        m_Value: 3
 --- !u!114 &1299204694895395851
 MonoBehaviour:
   m_ObjectHideFlags: 0

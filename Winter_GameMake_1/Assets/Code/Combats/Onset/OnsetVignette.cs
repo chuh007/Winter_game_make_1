@@ -13,7 +13,6 @@ namespace Code.Combats.Onset
 
         private Volume volume;
         private Vignette vignette;
-        private bool isVignetteEnabled = false;
 
         private void Awake()
         {
@@ -38,8 +37,7 @@ namespace Code.Combats.Onset
 
         private void ToggleVignette(OnsetUIEvent evt)
         {
-            isVignetteEnabled = !isVignetteEnabled;
-            vignette.active = isVignetteEnabled;
+            vignette.active = evt.isON;
             //vignette.intensity.Override(isVignetteEnabled ? 0.6f : 0f);
             //DOTween.To(() => vignette.intensity.value, x => vignette.intensity.value = x, targetIntensity, 0.25f)
             //       .SetEase(Ease.InOutQuad);

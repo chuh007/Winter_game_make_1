@@ -26,6 +26,6 @@
 
     public class OnsetUIEvent : GameEvent
     {
-
+        public bool isON;
     }
 }

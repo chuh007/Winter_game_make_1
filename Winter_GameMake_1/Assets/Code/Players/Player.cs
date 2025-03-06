@@ -55,9 +55,9 @@ namespace Code.Players
         {
             base.OnDestroy();
             GetCompo<EntityStat>().GetStat(jumpCountStat).OnValueChange -= HandleJumpCountChange;
-            PlayerInput.OnDashKeyPressed -= HandleDashKeyPress; //필요 없긴 하다.
+            PlayerInput.OnDashKeyPressed -= HandleDashKeyPress;
             GetCompo<EntityAnimationTrigger>().OnAnimationEnd -= HandleAnimationEnd;
-
+            
             PlayerInput.ClearSubscription();
         }
 
@@ -76,7 +76,6 @@ namespace Code.Players
 
         private void HandleDashKeyPress()
         {
-            //이 부분은 나중에 메시징시스템으로 묶는다.
             float facingDirection = GetCompo<EntityRenderer>().FacingDirection;
             if (GetCompo<EntityMover>().IsWallDetected(facingDirection)) return;
             

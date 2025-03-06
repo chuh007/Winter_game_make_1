@@ -5,15 +5,13 @@ using UnityEngine;
 
 namespace Code.Players.States
 {
-    public abstract class PlayerAirState : EntityState
+    public abstract class PlayerAirState : PlayerState
     {
-        protected Player _player;
         protected EntityMover _mover;
         protected PlayerAttackCompo _attackCompo;
             
         public PlayerAirState(Entity entity, AnimParamSO animParam) : base(entity, animParam)
         {
-            _player = entity as Player;
             _mover = entity.GetCompo<EntityMover>();
             _attackCompo = entity.GetCompo<PlayerAttackCompo>();
         }

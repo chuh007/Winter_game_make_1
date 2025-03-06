@@ -13,11 +13,12 @@ namespace Code.Entities.FSM
         
         public StateMachine(Entity entity, StateListSO stateList)
         {
+            Debug.Log("ming");
             _states = new Dictionary<string, EntityState>();
             foreach (StateSO state in stateList.states)
             {
                 Type type = Type.GetType(state.className);
-                Debug.Assert(type != null, $"Finding type is null : {state.className}"); //안전코드
+                Debug.Assert(type != null, $"Finding type is null : {state.className}");
                 EntityState entityState = Activator.CreateInstance(type, entity, state.animParam) as EntityState;
                 _states.Add(state.stateName, entityState); //스테이트 이름을 기반으로 딕셔너리 생성
             }
@@ -37,5 +38,6 @@ namespace Code.Entities.FSM
         {
             CurrentState.Update();
         }
+
     }
 }

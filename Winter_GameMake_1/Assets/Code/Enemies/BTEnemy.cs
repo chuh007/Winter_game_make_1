@@ -50,7 +50,6 @@ namespace Code.Enemies
         protected override void HandleDead()
         {
             ParticleManager.Instance.ParticlePlay(PollingType.EnemyDeadParticle, transform.position);
-            EnemyCounter.Instance.EnemyCountValueChange(-1);
             _fOV.gameObject.SetActive(false);
         }
         public BlackboardVariable<T> GetBlackboardVariable<T>(string key)
@@ -61,5 +60,12 @@ namespace Code.Enemies
             }
             return default;
         }
+        protected override void OnDestroy()
+        {
+            if(EnemyCounter.Instance != null)
+                EnemyCounter.Instance.EnemyCountValueChange(-1);
+            base.OnDestroy();
+        }
+
     }
 }
