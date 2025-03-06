@@ -13,7 +13,6 @@ namespace Code.Entities.FSM
         
         public StateMachine(Entity entity, StateListSO stateList)
         {
-            Debug.Log("ming");
             _states = new Dictionary<string, EntityState>();
             foreach (StateSO state in stateList.states)
             {

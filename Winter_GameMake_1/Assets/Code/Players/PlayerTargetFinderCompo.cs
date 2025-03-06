@@ -18,7 +18,6 @@ namespace Code.Players
 
         public Collider2D FindProximateTargetsInCicle()
         {
-            Debug.Log(CheckTrm);
             Collider2D[] targets = Physics2D.OverlapCircleAll(CheckTrm.position, range, layer);
             if (targets.Length > 0) return targets[0];
             return null;

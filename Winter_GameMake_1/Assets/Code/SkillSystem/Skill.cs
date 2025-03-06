@@ -45,7 +45,6 @@ namespace Code.SkillSystem
                 UseSkill();
                 return true;
             }
-            Debug.Log("Skill cooldown or locked");
             return false;
         }
 
