@@ -37,8 +37,6 @@ namespace Code.Enemies
 
             _fOV.viewAngle = GetBlackboardVariable<float>("Angle");
             _fOV.viewDistance = GetBlackboardVariable<float>("DetectRange");
-            Debug.Log(_fOV.viewAngle);
-            Debug.Log(_fOV.viewDistance);
             _fOV.DrawFOV();
         }
 

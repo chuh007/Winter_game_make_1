@@ -48,6 +48,7 @@ namespace Code.Entities.FSM
                 Time.timeScale = originalTimeScale;
                 Time.fixedDeltaTime = originalFixedDeltaTime;
                 Collider2D col = _player.GetCompo<PlayerTargetFinderCompo>().FindProximateTargetsInCicle();
+                Debug.Log(col);
                 if (col != null && col.transform.GetComponent<IOnsetable>().IsFindPlayer == false)
                 {
                     OnsetTargetEvent onSetTargetEvt = PlayerEvents.OnSetTargetEvent;

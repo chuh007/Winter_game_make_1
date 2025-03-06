@@ -25,7 +25,6 @@ namespace Code.Players.States
             _renderer.FlipController(target.transform.position.x - _player.transform.position.x);
             Vector2 dir = target.position - _player.transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            Debug.Log(angle);
             
             _player.transform.DOMove(new Vector2(target.localPosition.x,
                 target.position.y), 0.25f).OnComplete(() =>

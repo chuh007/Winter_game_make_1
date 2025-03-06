@@ -2,7 +2,6 @@
 using Code.Combats;
 using Code.Core.EventSystems;
 using Code.Core.StatSystem;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 namespace Code.Entities
