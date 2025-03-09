@@ -14,10 +14,12 @@ namespace Code.Players
         public void Initialize(Entity entity)
         {
             _player = entity as Player;
+            CheckTrm = _player.transform;
         }
 
         public Collider2D FindProximateTargetsInCicle()
         {
+            CheckTrm = _player.transform;
             Collider2D[] targets = Physics2D.OverlapCircleAll(CheckTrm.position, range, layer);
             if (targets.Length > 0) return targets[0];
             return null;
