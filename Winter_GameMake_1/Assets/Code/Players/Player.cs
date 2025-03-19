@@ -21,7 +21,7 @@ namespace Code.Players
         [SerializeField] private StatSO jumpCountStat, attackSpeedStat;
         [field: SerializeField] public AnimParamSO ComboCounterParam { get; private set; }
 
-        [field: SerializeField] public GameEventChannelSO uiEvt { get; private set; }
+        [field: SerializeField] public GameEventChannelSO UIChannel { get; private set; }
 
         [SerializeField] private GameObject gameover;
         

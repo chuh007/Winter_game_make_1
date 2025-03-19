@@ -6,6 +6,7 @@
         public static FadeCompleteEvent FadeCompleteEvent = new FadeCompleteEvent();
         public static readonly HPValueChangeEvent HPValueChangeEvent = new HPValueChangeEvent();
         public static readonly OnsetUIEvent OnsetUIEvent = new OnsetUIEvent();
+        public static readonly EscEvent EscEvent = new EscEvent();
     }
 
     public class FadeEvent : GameEvent
@@ -27,5 +28,10 @@
     public class OnsetUIEvent : GameEvent
     {
         public bool isON;
+    }
+
+    public class EscEvent : GameEvent
+    {
+        
     }
 }

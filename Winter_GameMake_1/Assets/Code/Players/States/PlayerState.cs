@@ -14,22 +14,32 @@ namespace Code.Entities.FSM
         public PlayerState(Entity entity, AnimParamSO animParam) : base(entity, animParam)
         {
             _player = entity as Player;
-            uiEvt = _player.uiEvt;
+            uiEvt = _player.UIChannel;
         }
         public override void Enter()
         {
             base.Enter();
+            _player.PlayerInput.OnESCKeyPressed += HandleEscKeyPress;
             _player.PlayerInput.OnOnsetKeyPressed += HandleOnsetKeyPress;
 
         }
 
+        
+
         public override void Exit()
         {
+            _player.PlayerInput.OnESCKeyPressed -= HandleEscKeyPress;
             _player.PlayerInput.OnOnsetKeyPressed -= HandleOnsetKeyPress;
             base.Exit();
 
         }
 
+        private void HandleEscKeyPress()
+        {
+            EscEvent escEvent = new EscEvent();
+            uiEvt.RaiseEvent(escEvent);
+        }
+        
         private float originalFixedDeltaTime = Time.fixedDeltaTime;
         private float originalTimeScale = 1f;
         private void HandleOnsetKeyPress(bool isPressed)

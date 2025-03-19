@@ -11,6 +11,8 @@ namespace Code.Players
         public event Action OnAttackKeyPressed;
         public event Action OnDashKeyPressed;
         public event Action OnCounterKeyPressed;
+        
+        public event Action OnESCKeyPressed;
         public event Action<bool> OnOnsetKeyPressed;
         public event Action<bool> OnSkillKeyPressed;
         
@@ -89,6 +91,12 @@ namespace Code.Players
                 OnOnsetKeyPressed?.Invoke(true);
             if (context.canceled)
                 OnOnsetKeyPressed?.Invoke(false);
+        }
+
+        public void OnESC(InputAction.CallbackContext context)
+        {
+            if(context.performed)
+                OnESCKeyPressed?.Invoke();
         }
     }
 }
